@@ -17,7 +17,6 @@ def solve_problems(problem, algorithm):
 
     for row in problem:
         print(row),
-    print
 
     try:
         p = ex1.create_pacman_problem(problem)
@@ -33,7 +32,7 @@ def solve_problems(problem, algorithm):
     if result and isinstance(result[0], search.Node):
         solve = result[0].path()[::-1]
         solution = [pi.action for pi in solve][1:]
-        print(len(solution), solution)
+        print("len: ",len(solution),", solution: ", solution)
     else:
         print("no solution")
 
