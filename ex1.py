@@ -170,6 +170,7 @@ class PacmanProblem(search.Problem):
         """ given a state, checks if this is the goal state, compares to the created goal state"""
         for row in state:
             for cell in row:
+                # todo: not just dot, also gost with dot (like 21)
                 if cell == DOT:
                     # print("Some Dots left - goal_test returns False")
                     return False
