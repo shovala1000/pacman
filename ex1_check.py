@@ -31,6 +31,11 @@ def solve_problems(problem, algorithm):
 
     if result and isinstance(result[0], search.Node):
         solve = result[0].path()[::-1]
+        # for n in solve:
+        #     for row in n.state:
+        #         print(row)
+        #     print()
+
         solution = [pi.action for pi in solve][1:]
         print("len: ",len(solution),", solution: ", solution)
     else:
