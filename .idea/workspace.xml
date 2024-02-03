@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="224d8c7c-517f-4735-abff-aae5d6674126" name="Changes" comment="successor function">
+    <list default="true" id="224d8c7c-517f-4735-abff-aae5d6674126" name="Changes" comment="problem1 is working">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ex1.py" beforeDir="false" afterPath="$PROJECT_DIR$/ex1.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ex1_check.py" beforeDir="false" afterPath="$PROJECT_DIR$/ex1_check.py" afterDir="false" />
@@ -67,7 +67,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706804910658</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="problem1 is working">
+      <option name="closed" value="true" />
+      <created>1706864908435</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1706864908435</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -83,7 +91,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="successor function" />
-    <option name="LAST_COMMIT_MESSAGE" value="successor function" />
+    <MESSAGE value="problem1 is working" />
+    <option name="LAST_COMMIT_MESSAGE" value="problem1 is working" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

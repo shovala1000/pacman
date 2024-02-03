@@ -49,12 +49,6 @@ class PacmanProblem(search.Problem):
                 successors.append((action, new_state))
         return tuple(successors)
 
-    def is_state_valid(self, state):
-        for row in state:
-            if PLAYER_EATEN_BY_GHOST in row:
-                return False
-        return True
-
     def result(self, state, move):
         """given state and an action and return a new state"""
         # Find the position of Pacman in the current state
@@ -68,22 +62,42 @@ class PacmanProblem(search.Problem):
 
         # Check if the new position is within the bounds of the game board
         if self.is_valid_position(new_pacman_position, state):
+            state_list = list(state)
+            for row in range(len(state)):
+                state_list[row] = list(state[row])
             # Check if Pacman encounters a dot or a ghost, and update the state accordingly
-            new_state = self.update_state_for_pacman(state, pacman_position, new_pacman_position)
+            new_state = self.update_state_for_pacman(state_list, pacman_position, new_pacman_position)
+
             if new_state == INVALID_STATE:
                 return INVALID_STATE
+            # print(new_state)
+
             # Move ghosts based on Manhattan distance and order: red, blue, yellow and green
             for ghost in (RED, BLUE, YELLOW, GREEN):
-                ghost_x, ghost_y = self.find_position(state, ghost)
+                ghost_x, ghost_y = self.find_position(state_list, ghost)
                 # If ghost exist
                 if ghost_x is not None and ghost_y is not None:
                     new_state = self.move_ghost(new_state, ghost, new_pacman_position, ghost_movements, ghost_x,
                                                 ghost_y)
                     # print(new_state)
-            return new_state
+
+            if new_state == INVALID_STATE:
+                return INVALID_STATE
+            else:
+                for i in range(len(new_state)):
+                    new_state[i] = tuple(new_state[i])
+                new_state = tuple(new_state)
+                # print(type(new_state))
+                return new_state
         else:
             # If the new position is invalid, return the current state
             return INVALID_STATE
+
+    def is_state_valid(self, state):
+        for row in state:
+            if PLAYER_EATEN_BY_GHOST in row:
+                return False
+        return True
 
     def find_position(self, state, element):
         """Find the position of an element in the state."""
@@ -110,29 +124,27 @@ class PacmanProblem(search.Problem):
         x, y = position
         return 0 <= x < len(state) and 0 <= y < len(state[0]) and state[x][y] is not WALL
 
-    def update_state_for_pacman(self, state, current_position, new_position):
+    def update_state_for_pacman(self, state_list, current_position, new_position):
         """Update the state when Pacman encounters a dot or a ghost."""
         ghost_list = [RED, BLUE, GREEN, YELLOW, RED_DOT, BLUE_DOT, GREEN_DOT, YELLOW_DOT]
-        state_matrix = list(state)
-        for i in range(len(state_matrix)):
-            state_matrix[i] = list(state_matrix[i])
 
         current_x, current_y = current_position
         new_x, new_y = new_position
 
         # Check if Pacman encounters a ghost at the new position
-        if state_matrix[new_x][new_y] in ghost_list:
+        if state_list[new_x][new_y] in ghost_list:
             return INVALID_STATE
         else:
             # Move Pacman to the new position
-            state_matrix[current_x][current_y] = EMPTY_SLOT
-            state_matrix[new_x][new_y] = PACMAN
+            state_list[current_x][current_y] = EMPTY_SLOT
+            state_list[new_x][new_y] = PACMAN
 
-        for i in range(len(state_matrix)):
-            state_matrix[i] = tuple(state_matrix[i])
-        return tuple(state_matrix)
+        # for i in range(len(state_list)):
+        #     state_list[i] = tuple(state_list[i])
+        # return tuple(state_list)
+        return state_list
 
-    def move_ghost(self, state, ghost, pacman_position, ghost_movements, ghost_x, ghost_y):
+    def move_ghost(self, state_list, ghost, pacman_position, ghost_movements, ghost_x, ghost_y):
         """Move ghosts based on Manhattan distance and order."""
         ghost_list = [RED, BLUE, GREEN, YELLOW]
         ghost_list_with_dot = [RED_DOT, BLUE_DOT, GREEN_DOT, YELLOW_DOT]
@@ -147,14 +159,11 @@ class PacmanProblem(search.Problem):
 
             # Move the ghost to the new position
             new_ghost_x, new_ghost_y = ghost_x + dx, ghost_y + dy
-            if self.is_valid_position((new_ghost_x, new_ghost_y), state):
-                state_matrix = list(state)
-                for i in range(len(state_matrix)):
-                    state_matrix[i] = list(state_matrix[i])
+            if self.is_valid_position((new_ghost_x, new_ghost_y), state_list):
 
                 # New position have a ghost
-                if (state[new_ghost_x][new_ghost_y] in ghost_list
-                        or state[new_ghost_x][new_ghost_y] in ghost_list_with_dot):
+                if (state_list[new_ghost_x][new_ghost_y] in ghost_list
+                        or state_list[new_ghost_x][new_ghost_y] in ghost_list_with_dot):
                     distances.pop(min_distance_index)
                     continue
                 ghost_with_dot = ghost
@@ -167,34 +176,29 @@ class PacmanProblem(search.Problem):
                     ghost_with_dot = ghost_list_with_dot[ghost_index]
 
                 # New position have a dot
-                if state_matrix[new_ghost_x][new_ghost_y] == DOT:
-                    state_matrix[new_ghost_x][new_ghost_y] = ghost_with_dot
+                if state_list[new_ghost_x][new_ghost_y] == DOT:
+                    state_list[new_ghost_x][new_ghost_y] = ghost_with_dot
                 #     New position is empty
-                elif state_matrix[new_ghost_x][new_ghost_y] == EMPTY_SLOT:
-                    state_matrix[new_ghost_x][new_ghost_y] = ghost_without_dot
+                elif state_list[new_ghost_x][new_ghost_y] == EMPTY_SLOT:
+                    state_list[new_ghost_x][new_ghost_y] = ghost_without_dot
                     # New position have a pacman
-                elif state_matrix[new_ghost_x][new_ghost_y] == PACMAN:
+                elif state_list[new_ghost_x][new_ghost_y] == PACMAN:
                     return INVALID_STATE
-                    distances.pop(min_distance_index)
-                    continue
-                    # state_matrix[new_ghost_x][new_ghost_y] = PLAYER_EATEN_BY_GHOST
-                    #     TODO: STOP THIS BRANCH
+                    # state_list[new_ghost_x][new_ghost_y] = PLAYER_EATEN_BY_GHOST
                 else:
                     print("ERROR1")
 
                 # Old position have a dot
                 if ghost in ghost_list_with_dot:
-                    state_matrix[ghost_x][ghost_y] = DOT
+                    state_list[ghost_x][ghost_y] = DOT
                 else:
-                    state_matrix[ghost_x][ghost_y] = EMPTY_SLOT
+                    state_list[ghost_x][ghost_y] = EMPTY_SLOT
 
-                for i in range(len(state_matrix)):
-                    state_matrix[i] = tuple(state_matrix[i])
-                return tuple(state_matrix)
+                return state_list
 
             else:
                 distances.pop(min_distance_index)
-        return state
+        return state_list
 
     def manhattan_distance(self, pos1, pos2):
         """Calculate the Manhattan distance between two positions."""
@@ -214,12 +218,14 @@ class PacmanProblem(search.Problem):
     def h(self, node):
         """ This is the heuristic. It get a node (not a state)
         and returns a goal distance estimate"""
+        ghost_list_with_dot = [RED_DOT, BLUE_DOT, GREEN_DOT, YELLOW_DOT]
+
         # Calculate the remainder dots
         state = node.state
         count = 0
         for row in state:
             for elem in row:
-                if elem == DOT:
+                if elem == DOT or elem in ghost_list_with_dot:
                     count += 1
         return count
         utils.raiseNotDefined()

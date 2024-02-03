@@ -1,6 +1,6 @@
 import ex1
 import search
-
+import time
 
 def run_problem(func, targs=(), kwargs={}):
     result = (-3, "default")
@@ -66,4 +66,8 @@ def main():
     solve_problems(problem, algorithm)
 
 if __name__ == '__main__':
+    start_time = time.time()
     main()
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+    print(f"Total time taken: {elapsed_time} seconds")
