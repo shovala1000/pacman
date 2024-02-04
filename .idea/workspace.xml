@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="224d8c7c-517f-4735-abff-aae5d6674126" name="Changes" comment="problem1 is working">
+    <list default="true" id="224d8c7c-517f-4735-abff-aae5d6674126" name="Changes" comment="state_metrix optimized">
+      <change afterPath="$PROJECT_DIR$/ex1_test1.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ex1.py" beforeDir="false" afterPath="$PROJECT_DIR$/ex1.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ex1_check.py" beforeDir="false" afterPath="$PROJECT_DIR$/ex1_check.py" afterDir="false" />
@@ -27,14 +28,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.ex1.executor&quot;: &quot;Run&quot;,
-    &quot;Python.ex1_check.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python tests.Python tests in ex1_test1.py.executor": "Run",
+    "Python.ex1.executor": "Debug",
+    "Python.ex1_check.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/shova/PycharmProjects/AI_ex1"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\shova\PycharmProjects\AI_ex1" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -75,7 +84,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706864908435</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="state_metrix optimized">
+      <option name="closed" value="true" />
+      <created>1706983676046</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1706983676046</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -92,7 +109,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="successor function" />
     <MESSAGE value="problem1 is working" />
-    <option name="LAST_COMMIT_MESSAGE" value="problem1 is working" />
+    <MESSAGE value="state_metrix optimized" />
+    <option name="LAST_COMMIT_MESSAGE" value="state_metrix optimized" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -112,7 +130,38 @@
           <line>660</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ex1.py</url>
+          <line>204</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ex1_test1.py</url>
+          <line>19</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ex1.py</url>
+          <line>160</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ex1.py</url>
+          <line>49</line>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ex1.py</url>
+          <line>56</line>
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="tests">
+        <watch expression="successors" />
+        <watch expression="successors[1][1][3]" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

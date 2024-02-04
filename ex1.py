@@ -20,9 +20,9 @@ RED_DOT = 21
 BLUE_DOT = 31
 YELLOW_DOT = 41
 GREEN_DOT = 51
-WALL = 9
+WALL = 99
 PLAYER_EATEN_BY_GHOST = 88
-INVALID_STATE = "Error"
+INVALID_STATE = "Error99"
 
 
 class PacmanProblem(search.Problem):
@@ -40,8 +40,7 @@ class PacmanProblem(search.Problem):
         search.Problem.__init__(self, initial)
 
     def successor(self, state):
-        """ Generates the successor state """
-        actions = (RIGHT, DOWN, LEFT, UP)
+        actions = (UP, RIGHT, DOWN, LEFT)
         successors = []
         for action in actions:
             new_state = self.result(state, action)
@@ -75,8 +74,11 @@ class PacmanProblem(search.Problem):
             # Move ghosts based on Manhattan distance and order: red, blue, yellow and green
             for ghost in (RED, BLUE, YELLOW, GREEN):
                 ghost_x, ghost_y = self.find_position(state_list, ghost)
+                if ghost_x is None or ghost_y is None:
+                    ghost = ghost + 1
+                    ghost_x, ghost_y = self.find_position(state_list, ghost)  # Ghost with dot
                 # If ghost exist
-                if ghost_x is not None and ghost_y is not None:
+                if new_state != INVALID_STATE and ghost_x is not None and ghost_y is not None:
                     new_state = self.move_ghost(new_state, ghost, new_pacman_position, ghost_movements, ghost_x,
                                                 ghost_y)
                     # print(new_state)
@@ -145,6 +147,10 @@ class PacmanProblem(search.Problem):
         return state_list
 
     def move_ghost(self, state_list, ghost, pacman_position, ghost_movements, ghost_x, ghost_y):
+        if state_list == INVALID_STATE:
+            print("problemmmmmmm")
+        if state_list == ((51, 10, 10, 10), (10, 99, 99, 11), (77, 10, 10, 10), (20, 10, 10, 10)):
+            print("")
         """Move ghosts based on Manhattan distance and order."""
         ghost_list = [RED, BLUE, GREEN, YELLOW]
         ghost_list_with_dot = [RED_DOT, BLUE_DOT, GREEN_DOT, YELLOW_DOT]
@@ -152,11 +158,12 @@ class PacmanProblem(search.Problem):
         distances = [self.manhattan_distance((ghost_x + dx, ghost_y + dy), pacman_position)
                      for dx, dy in ghost_movements]
         # Distances not empty
-        while distances:
+        flag_error = 4  # Number of len(distances)
+        while flag_error:
             # Choose the movement with the minimum distance
             min_distance_index = distances.index(min(distances))
             dx, dy = ghost_movements[min_distance_index]
-
+            max_distance_val = max(distances)
             # Move the ghost to the new position
             new_ghost_x, new_ghost_y = ghost_x + dx, ghost_y + dy
             if self.is_valid_position((new_ghost_x, new_ghost_y), state_list):
@@ -164,7 +171,8 @@ class PacmanProblem(search.Problem):
                 # New position have a ghost
                 if (state_list[new_ghost_x][new_ghost_y] in ghost_list
                         or state_list[new_ghost_x][new_ghost_y] in ghost_list_with_dot):
-                    distances.pop(min_distance_index)
+                    distances[min_distance_index] = max_distance_val + 1
+                    flag_error = flag_error - 1
                     continue
                 ghost_with_dot = ghost
                 ghost_without_dot = ghost
@@ -186,7 +194,9 @@ class PacmanProblem(search.Problem):
                     return INVALID_STATE
                     # state_list[new_ghost_x][new_ghost_y] = PLAYER_EATEN_BY_GHOST
                 else:
-                    print("ERROR1")
+                    print("state_list", state_list)
+                    print("ERROR1 - state_list[", new_ghost_x, "][", new_ghost_y, "]: ",
+                          state_list[new_ghost_x][new_ghost_y])
 
                 # Old position have a dot
                 if ghost in ghost_list_with_dot:
@@ -197,7 +207,8 @@ class PacmanProblem(search.Problem):
                 return state_list
 
             else:
-                distances.pop(min_distance_index)
+                distances[min_distance_index] = max_distance_val + 1
+                flag_error = flag_error - 1
         return state_list
 
     def manhattan_distance(self, pos1, pos2):
@@ -228,7 +239,6 @@ class PacmanProblem(search.Problem):
                 if elem == DOT or elem in ghost_list_with_dot:
                     count += 1
         return count
-        utils.raiseNotDefined()
 
 
 def create_pacman_problem(game):
