@@ -40,7 +40,7 @@ class PacmanProblem(search.Problem):
         search.Problem.__init__(self, initial)
 
     def successor(self, state):
-        actions = (UP, RIGHT, DOWN, LEFT)
+        actions = (RIGHT, DOWN, LEFT,UP)
         successors = []
         for action in actions:
             new_state = self.result(state, action)

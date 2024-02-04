@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="224d8c7c-517f-4735-abff-aae5d6674126" name="Changes" comment="state_metrix optimized">
-      <change afterPath="$PROJECT_DIR$/ex1_test1.py" afterDir="false" />
+    <list default="true" id="224d8c7c-517f-4735-abff-aae5d6674126" name="Changes" comment="passed all test!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ex1.py" beforeDir="false" afterPath="$PROJECT_DIR$/ex1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ex1_check.py" beforeDir="false" afterPath="$PROJECT_DIR$/ex1_check.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +90,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706983676046</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="passed all test!">
+      <option name="closed" value="true" />
+      <created>1707006499547</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1707006499547</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -110,7 +116,8 @@
     <MESSAGE value="successor function" />
     <MESSAGE value="problem1 is working" />
     <MESSAGE value="state_metrix optimized" />
-    <option name="LAST_COMMIT_MESSAGE" value="state_metrix optimized" />
+    <MESSAGE value="passed all test!" />
+    <option name="LAST_COMMIT_MESSAGE" value="passed all test!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -132,7 +139,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/ex1.py</url>
-          <line>204</line>
+          <line>196</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -142,17 +149,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/ex1.py</url>
-          <line>160</line>
+          <line>152</line>
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/ex1.py</url>
-          <line>49</line>
-          <option name="timeStamp" value="30" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/ex1.py</url>
-          <line>56</line>
+          <line>48</line>
           <option name="timeStamp" value="36" />
         </line-breakpoint>
       </breakpoints>
